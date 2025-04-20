@@ -16,7 +16,10 @@ class CustomHostnamesTest extends TestCase
 
         $customSsl = $this->getCustomSsl();
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('post')->willReturn($response);
 
         $mock->expects($this->once())
@@ -67,7 +70,10 @@ class CustomHostnamesTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/listHostnames.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('get')->willReturn($response);
 
         $mock->expects($this->once())
@@ -100,7 +106,10 @@ class CustomHostnamesTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getHostname.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('get')->willReturn($response);
 
         $mock->expects($this->once())
@@ -123,7 +132,10 @@ class CustomHostnamesTest extends TestCase
 
         $customSsl = $this->getCustomSsl();
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('patch')->willReturn($response);
 
         $mock->expects($this->once())
@@ -180,7 +192,10 @@ class CustomHostnamesTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteHostname.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('delete')->willReturn($response);
 
         $mock->expects($this->once())
@@ -200,7 +215,10 @@ class CustomHostnamesTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getCustomHostnameFallbackOrigin.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('get')->willReturn($response);
 
         $mock->expects($this->once())

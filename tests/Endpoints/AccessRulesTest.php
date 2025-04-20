@@ -6,7 +6,10 @@ class AccessRulesTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/listAccessRules.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('get')->willReturn($response);
 
         $mock->expects($this->once())
@@ -38,7 +41,10 @@ class AccessRulesTest extends TestCase
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/createAccessRule.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('post')->willReturn($response);
 
         $mock->expects($this->once())
@@ -66,7 +72,10 @@ class AccessRulesTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/updateAccessRule.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('patch')->willReturn($response);
 
         $mock->expects($this->once())
@@ -93,7 +102,10 @@ class AccessRulesTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteAccessRule.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('delete')->willReturn($response);
 
         $mock->expects($this->once())

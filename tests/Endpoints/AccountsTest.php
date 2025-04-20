@@ -13,7 +13,10 @@ class AccountsTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/listAccounts.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('get')->willReturn($response);
 
         $mock->expects($this->once())
@@ -42,7 +45,10 @@ class AccountsTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/createStandardAccount.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('post')->willReturn($response);
 
         $mock->expects($this->once())
@@ -65,7 +71,10 @@ class AccountsTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/createEnterpriseAccount.json');
 
-        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('post')->willReturn($response);
 
         $mock->expects($this->once())

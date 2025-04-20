@@ -9,7 +9,10 @@ class AccountMembersTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/createAccountMember.json');
 
-        $mock = $this->getMockBuilder(Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('post')->willReturn($response);
 
         $mock->expects($this->once())
@@ -34,7 +37,10 @@ class AccountMembersTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/listAccountMembers.json');
 
-        $mock = $this->getMockBuilder(Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $mock = $this->getMockBuilder(Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $mock->method('get')->willReturn($response);
 
         $mock->expects($this->once())

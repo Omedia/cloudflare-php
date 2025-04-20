@@ -12,7 +12,10 @@ class AccountRolesTest extends TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/listAccountRoles.json');
 
-        $adapter = $this->getMockBuilder(Adapter::class)->getMock();
+        $authMock = $this->createMock(\Cloudflare\API\Auth\Auth::class);
+        $adapter = $this->getMockBuilder(Adapter::class)
+            ->setConstructorArgs([$authMock, 'https://example.com'])
+            ->getMock();
         $adapter->method('get')->willReturn($response);
 
         $adapter->expects($this->once())
